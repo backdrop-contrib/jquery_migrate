@@ -1,0 +1,4 @@
+type = module
+name = jQuery migrate
+description = Helper module for maintainers
+backdrop = 1.x
