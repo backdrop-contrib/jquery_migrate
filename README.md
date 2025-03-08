@@ -7,6 +7,8 @@ projects.
 This module's supposed to be used by Backdrop CMS module maintainers to
 identify problems in their modules.
 
+See also: https://github.com/backdrop/backdrop-issues/issues/6404
+
 ## Installation
 
 - Install this module using the official [Backdrop CMS instructions](https://docs.backdropcms.org/documentation/extend-with-modules)
