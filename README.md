@@ -1,4 +1,4 @@
-# jQuery migrate helper
+# jQuery Migrate Helper
 
 Bundles [jQuery Migrate](https://github.com/jquery/jquery-migrate), a tool
 to debug and fix compatibility problems with newer jQuery versions in legacy
