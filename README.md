@@ -9,6 +9,10 @@ identify problems in their modules.
 
 See also: https://github.com/backdrop/backdrop-issues/issues/6404
 
+Note that in its current state, this is a dev module only and is not
+supposed to be turned on on production sites.
+It potentially nags a lot into the browser console.
+
 ## Installation
 
 - Install this module using the official [Backdrop CMS instructions](https://docs.backdropcms.org/documentation/extend-with-modules)
