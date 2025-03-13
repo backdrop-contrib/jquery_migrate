@@ -13,6 +13,21 @@ Note that in its current state, this is a dev module only and is not
 supposed to be turned on on production sites.
 It potentially nags a lot into the browser console.
 
+## What jquery-migrate can do for you
+
+If you maintain a module with legacy code, and you're not sure, if it will
+work with the upcoming jQuery 4 version, install this module on your dev
+instance and click through what your module provides.
+
+While doing that, keep an eye on the browser console. jQuery migrate will
+provide helpful log info like for example `JQMIGRATE: jQuery.fn.bind() is
+deprecated` or `JQMIGRATE: jQuery.isFunction() is deprecated`.
+The console trace will help you to find, where those deprecated functions are
+used.
+
+Additional info about what to do to fix it can be found in the official
+[jQuery API documentation](https://api.jquery.com/category/deprecated/)
+
 ## Installation
 
 - Install this module using the official [Backdrop CMS instructions](https://docs.backdropcms.org/documentation/extend-with-modules)
