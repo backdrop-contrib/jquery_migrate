@@ -17,7 +17,8 @@ It potentially nags a lot into the browser console.
 
 If you maintain a module with legacy code, and you're not sure, if it will
 work with the upcoming jQuery 4 version, install this module on your dev
-instance and click through what your module provides.
+instance, make sure you switch to jQuery v3
+(on admin/config/development/jquery) and click through what your module provides.
 
 While doing that, keep an eye on the browser console. jQuery migrate will
 provide helpful log info like for example `JQMIGRATE: jQuery.fn.bind() is
