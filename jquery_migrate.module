@@ -12,11 +12,34 @@ function jquery_migrate_library_info_alter(&$libraries, $module) {
     $module_path = backdrop_get_path('module', 'jquery_migrate');
     $jquery_active = config_get('system.core', 'jquery_version');
     $path = FALSE;
+    $minified_silent = config_get('jquery_migrate.settings', 'disable_logging');
 
     if ($jquery_active == 'default') {
-      // Check compatibility with jQuery 3+.
-      // This warns about functionality deprecated in 3.x, and removed in 4.x.
-      $path = $module_path . '/libraries/jquery-migrate/jquery-migrate-3.5.2.js';
+      // Check compatibility with jQuery 3.x.
+      if ($minified_silent) {
+        $path = $module_path . '/libraries/jquery-migrate/jquery-migrate-3.6.0.min.js';
+      }
+      else {
+        $path = $module_path . '/libraries/jquery-migrate/jquery-migrate-3.6.0.js';
+      }
+    }
+    elseif ($jquery_active == 'legacy') {
+      // Check compatibility with jQuery 1.x, just in case.
+      if ($minified_silent) {
+        $path = $module_path . '/libraries/jquery-migrate/jquery-migrate-1.4.1.min.js';
+      }
+      else {
+        $path = $module_path . '/libraries/jquery-migrate/jquery-migrate-1.4.1.js';
+      }
+    }
+    elseif ($jquery_active == '4.x') {
+      // Check compatibility with jQuery 4.x.
+      if ($minified_silent) {
+        $path = $module_path . '/libraries/jquery-migrate/jquery-migrate-4.0.2.min.js';
+      }
+      else {
+        $path = $module_path . '/libraries/jquery-migrate/jquery-migrate-4.0.2.js';
+      }
     }
 
     if ($path) {
@@ -26,4 +49,43 @@ function jquery_migrate_library_info_alter(&$libraries, $module) {
       );
     }
   }
+}
+
+/**
+ * Implements hook_config_info().
+ */
+function jquery_migrate_config_info() {
+  $prefixes['jquery_migrate.settings'] = array(
+    'label' => t('jQuery Migrate settings'),
+    'group' => t('Configuration'),
+  );
+  return $prefixes;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function jquery_migrate_menu() {
+  $items['admin/config/development/jquery-migrate'] = array(
+    'title' => 'jQuery Migrate settings',
+    'description' => 'Configure settings related to the jQuery Migrate',
+    'page callback' => 'backdrop_get_form',
+    'page arguments' => array('jquery_migrate_admin_form'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Form callback for admin/config/development/jquery-migrate.
+ */
+function jquery_migrate_admin_form($form, &$form_state) {
+  $form['#config'] = 'jquery_migrate.settings';
+  $form['disable_logging'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Disable logging',
+    '#default_value' => config_get('jquery_migrate.settings', 'disable_logging'),
+    '#description' => 'Silence jQuery Migrate output into browser console',
+  );
+  return system_settings_form($form);
 }
