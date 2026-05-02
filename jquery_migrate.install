@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Install file for jQuery Migrate module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function jquery_migrate_install() {
+  // Make sure, our alter hook runs after system module's
+  // hook_library_info_alter.
+  module_set_weight('jquery_migrate', 1);
+}
